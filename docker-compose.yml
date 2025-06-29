@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  nodo1:
+    build: ./backend
+    container_name: nodo1
+    depends_on:
+      - redis
+    environment:
+      - PUERTO=6000
+    volumes:
+      - ./accidentes_procesado.csv:/app/accidentes_procesado.csv
+    ports:
+      - "6000:6000"
+
+  nodo2:
+    build: ./backend
+    container_name: nodo2
+    depends_on:
+      - redis
+    environment:
+      - PUERTO=6001
+    volumes:
+      - ./accidentes_procesado.csv:/app/accidentes_procesado.csv
+    ports:
+      - "6001:6001"
