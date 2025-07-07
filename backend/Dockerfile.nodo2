@@ -1,0 +1,10 @@
+FROM golang:1.20-alpine
+
+WORKDIR /app
+
+COPY . .
+
+RUN go mod tidy
+RUN go build -o ejecutable_nodo2 ./nodo2/main.go
+
+CMD ["./ejecutable_nodo2"]

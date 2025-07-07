@@ -1,0 +1,2 @@
+Descargar el archivo y añadir al nivel de este archivo ruta: TF/common
+Enlace Dataset (Drive): https://drive.google.com/file/d/1bC43hM5nL3WlQBf0JihJk29VW9fkFyvc/view?usp=drive_link

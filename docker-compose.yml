@@ -1,32 +1,70 @@
-version: '3.9'
+version: '3.8'
 
 services:
   redis:
-    image: redis:alpine
+    image: redis:7
     container_name: redis
     ports:
       - "6379:6379"
+    networks:
+      - red-distribuida
 
   nodo1:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.nodo1
     container_name: nodo1
     depends_on:
       - redis
-    environment:
-      - PUERTO=6000
-    volumes:
-      - ./accidentes_procesado.csv:/app/accidentes_procesado.csv
-    ports:
-      - "6000:6000"
+    networks:
+      - red-distribuida
 
   nodo2:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.nodo2
     container_name: nodo2
     depends_on:
       - redis
-    environment:
-      - PUERTO=6001
-    volumes:
-      - ./accidentes_procesado.csv:/app/accidentes_procesado.csv
+    networks:
+      - red-distribuida
+
+  nodo3:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.nodo3
+    container_name: nodo3
+    depends_on:
+      - redis
+    networks:
+      - red-distribuida
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.api
+    container_name: api
     ports:
-      - "6001:6001"
+      - "8080:8080"
+    depends_on:
+      - nodo1
+      - nodo2
+      - nodo3
+    networks:
+      - red-distribuida
+
+  frontendapp:
+    build:
+      context: ./frontendapp
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - api
+    networks:
+      - red-distribuida
+
+networks:
+  red-distribuida:
+    driver: bridge

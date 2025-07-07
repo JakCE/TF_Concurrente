@@ -1,0 +1,57 @@
+<form [formGroup]="prediccionForm" (ngSubmit)="onSubmit()"
+    class="space-y-4 max-w-lg mx-auto p-6 bg-white rounded-xl shadow">
+    <div>
+        <label for="hora" class="block mb-2 text-sm font-medium text-gray-900">Ingrese la
+            hora:</label>
+        <input type="number" id="hora" formControlName="hora" aria-describedby="helper-text-explanation"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="" required />
+    </div>
+    <div>
+        <label for="departamento" class="block mb-2 text-sm font-medium text-gray-900">Seleccione un
+            departamento</label>
+        <select id="departamento" formControlName="departamento"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            <option value="" selected>Seleccione una opción</option>
+            @for (item of lstDepartamentos; track $index) {
+            <option [value]="item.id">{{ item.nombre }}</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label for="codigo_via" class="block mb-2 text-sm font-medium text-gray-900">Seleccione una via</label>
+        <select id="codigo_via" formControlName="codigo_via"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            <option value="" selected>Seleccione una opción</option>
+            @for (item of lstVias; track $index) {
+            <option [value]="item.id">{{ item.nombre }}</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label for="kilometro" class="block mb-2 text-sm font-medium text-gray-900">Ingrese el
+            Kilometro:</label>
+        <input type="number" id="kilometro" formControlName="kilometro" aria-describedby="helper-text-explanation"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="" required />
+    </div>
+    <div>
+        <label for="modalidad" class="block mb-2 text-sm font-medium text-gray-900">Seleccione la modalidad</label>
+        <select id="modalidad" formControlName="modalidad"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            <option value="" selected>Seleccione una opción</option>
+            @for (item of lstModalidades; track $index) {
+            <option [value]="item.id">{{ item.nombre }}</option>
+            }
+        </select>
+    </div>
+    <button [disabled]="enviando" type="submit"
+        class="w-full text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+        {{ enviando ? 'Procesando...' : 'Predecir Riesgo' }}
+    </button>
+
+    <div *ngIf="resultado" class="mt-4 p-4 bg-green-100 text-green-800 rounded">
+        <p><strong>Riesgo Final:</strong> {{ resultado.riesgo_final }}</p>
+        <p><strong>Votos:</strong> {{ resultado.votos | json }}</p>
+    </div>
+</form>

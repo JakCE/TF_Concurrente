@@ -1,0 +1,30 @@
+<div class="p-4">
+  <h2 class="text-xl font-bold mb-4">Estadísticas de Accidentes</h2>
+
+  <div class="mb-6 bg-white p-4 rounded shadow">
+    <h3 class="font-semibold mb-2">Por Departamento</h3>
+    <canvas baseChart
+            [data]="chartDeptos"
+            [options]="chartOptions"
+            [type]="'bar'">
+    </canvas>
+  </div>
+
+  <div class="mb-6 bg-white p-4 rounded shadow">
+    <h3 class="font-semibold mb-2">Por Hora</h3>
+    <canvas baseChart
+            [data]="chartHoras"
+            [options]="chartOptions"
+            [type]="'bar'">
+    </canvas>
+  </div>
+
+  <div class="bg-white p-4 rounded shadow">
+    <h3 class="font-semibold mb-2">Por Modalidad</h3>
+    <canvas baseChart
+            [data]="chartModalidad"
+            [options]="chartOptions"
+            [type]="'doughnut'">
+    </canvas>
+  </div>
+</div>
