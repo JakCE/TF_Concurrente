@@ -1,4 +1,4 @@
-# Sistema distribuido de predicción de accidentes - PC4 CC65
+# Sistema distribuido de predicción de accidentes - TF CC65
 
 Este proyecto implementa nodos distribuidos en Go que leen un dataset de accidentes, donde predicen el nivel de riesgo y almacenan los resultados en Redis. Se comunican entre ellos usando sockets TCP.
 
