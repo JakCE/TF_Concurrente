@@ -10,3 +10,7 @@ Este proyecto implementa nodos distribuidos en Go que leen un dataset de acciden
 ```bash
 docker-compose up --build
 docker-compose up --build
+
+## descripcion data set
+Se utilizó el dataset titulado "Accidentes de Tránsito en Carreteras", proporcionado por la Superintendencia de Transporte Terrestre de Personas, Carga y Mercancías (SUTRAN) y disponible en el portal de datos abiertos del gobierno del Perú. Este conjunto de datos ofrece información detallada sobre incidentes vehiculares ocurridos en las carreteras nacionales, incluyendo variables como la fecha, hora, ubicación, tipo de accidente, así como el número de fallecidos y heridos.
+
